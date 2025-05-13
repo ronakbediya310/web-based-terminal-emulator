@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Terminal</title>
+
+    <!-- Xterm.js CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/xterm@4.19.0/css/xterm.css"
+    />
+
+    <!-- Xterm.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/xterm@4.19.0/lib/xterm.js"></script>
+
+    <!-- Custom Styling -->
+    <style>
+      :root {
+        --primary-color: #4caf50;
+        --bg-color: #1e1e1e;
+        --card-bg: #2e2e2e;
+        --border-color: #444;
+        --text-light: #ffffff;
+        --text-muted: #bbbbbb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        font-family: "Segoe UI", sans-serif;
+        color: var(--text-light);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2vh 1vw;
+        min-height: 100vh;
+      }
+
+      #terminal {
+        width: 100%;
+        max-width: 1200px;
+        height: 60vh;
+        background-color: #000;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .xterm {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 14px;
+      }
+
+      .input-container {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        background-color: var(--card-bg);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 1000px;
+      }
+
+      .input-container input {
+        flex: 1 1 300px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        background-color: #1b1b1b;
+        color: white;
+      }
+
+      .input-container button {
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .input-container button:hover {
+        background-color: #43a047;
+      }
+
+      #progress-bar-container {
+        width: 100%;
+        max-width: 1000px;
+        margin-top: 15px;
+        background-color: var(--card-bg);
+        padding: 12px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      #progress-bar {
+        width: 100%;
+        background-color: var(--border-color);
+        border-radius: 10px;
+        height: 20px;
+        overflow: hidden;
+      }
+
+      #progress {
+        height: 100%;
+        background: linear-gradient(to right, #66bb6a, #43a047);
+        width: 0%;
+        transition: width 0.3s ease-in-out;
+      }
+
+      #status-message {
+        animation: fadeIn 0.3s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #terminal {
+          height: 50vh;
+        }
+
+        .input-container {
+          flex-direction: column;
+          align-items: stretch;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="terminal"></div>
+
+    <div class="input-container">
+      <input
+        type="text"
+        id="sourcePath"
+        placeholder="Enter source folder path"
+      />
+      <input
+        type="text"
+        id="destinationPath"
+        placeholder="Enter destination folder path"
+      />
+      <button onclick="startCopy()">Copy Files</button>
+    </div>
+
+    <div id="progress-bar-container">
+      <div id="progress-bar">
+        <div id="progress"></div>
+      </div>
+      <!-- Status message will appear here -->
+    </div>
+
+    <script src="client.js"></script>
+  </body>
+</html>
