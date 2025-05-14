@@ -62,3 +62,7 @@ npm run start
 
 ## 5.📷 Screenshot
 ![alt text](image.png)
+
+## 6. Demo
+https://drive.google.com/file/d/1E6uUSGagUJH92ZJ4UoGKDjecdk_vgE2V/view?usp=drive_link
+
