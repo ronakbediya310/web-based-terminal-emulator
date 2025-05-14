@@ -34,7 +34,7 @@ Ensure the following are installed on your system:
 
 ```bash
 git clone https://github.com/ronakbediya310/web-based-terminal-emulator.git
-cd interactive-terminal
+cd web-based-terminal-emulator
 ```
 
 ## 2. Install Dependencies
